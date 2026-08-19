@@ -73,5 +73,20 @@ def adicionar():
     db.session.commit()
     return jsonify({'mensagem': 'Contato adicionado com sucesso!'}), 201
 
+@app.route('/contatos/<int:id>', methods=['GET'])
+def buscar_contato(id):
+    if 'usuario_id' not in session:
+        return jsonify({'erro': 'não autenticado'}), 401
+    
+    contato = Contato.query.filter_by(id=id, usuario_id=session['usuario_id']).first()
+
+    if contato is None:
+        return jsonify({'Erro!': 'Contato não localizado!'}), 404
+
+    return jsonify({'id': contato.id, 'nome': contato.nome, 'telefone': contato.telefone, 'email': contato.email}), 200
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
