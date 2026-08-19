@@ -5,17 +5,19 @@ API REST desenvolvida em Python com Flask e SQLAlchemy, sem interface HTML — t
 ## Funcionalidades
 - 🔐 Cadastro e login de usuários (senha protegida com hash)
 - 👤 Autenticação via sessão
-- ✅ Criar contatos (vinculados ao usuário autenticado)
-- 📋 Listar contatos do usuário autenticado
+- ✅ CRUD completo de contatos (criar, listar, buscar, editar, remover), vinculados ao usuário autenticado
 
 ## Endpoints
 
-| Método | Rota          | Descrição                     |
-|--------|---------------|--------------------------------|
-| POST   | `/cadastro`   | Cria um novo usuário           |
-| POST   | `/login`      | Autentica o usuário            |
-| GET    | `/contatos`   | Lista os contatos do usuário   |
-| POST   | `/contatos`   | Adiciona um novo contato       |
+| Método | Rota                  | Descrição                          |
+|--------|-----------------------|-------------------------------------|
+| POST   | `/cadastro`           | Cria um novo usuário               |
+| POST   | `/login`              | Autentica o usuário                |
+| GET    | `/contatos`           | Lista os contatos do usuário       |
+| POST   | `/contatos`           | Adiciona um novo contato           |
+| GET    | `/contatos/<id>`      | Busca um contato específico        |
+| PUT    | `/contatos/<id>`      | Edita um contato existente         |
+| DELETE | `/contatos/<id>`      | Remove um contato                  |
 
 ## Como executar
 1. Clone o repositório
