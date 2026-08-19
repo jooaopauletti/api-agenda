@@ -120,5 +120,19 @@ def editar(id):
     return jsonify({'id': contato.id, 'nome': contato.nome, 'telefone': contato.telefone, 'email': contato.email}), 200
 
 
+@app.route('/contatos/<int:id>', methods=['DELETE'])
+def deletar(id):
+    if 'usuario_id' not in session:
+        return jsonify({'erro': 'não autenticado'}), 401
+
+    contato = Contato.query.filter_by(id=id, usuario_id=session['usuario_id']).first()
+
+    if contato is None:
+        return jsonify({'erro': 'Contato não localizado!'}), 404
+    
+    db.session.delete(contato)
+    db.session.commit()
+    return jsonify({'mensagem': 'Contato removido com sucesso!'}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
